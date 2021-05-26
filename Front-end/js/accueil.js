@@ -1,5 +1,6 @@
 console.log("accueil");
 
+const container = document.getElementById("camera")
 
 const getProductsFromApi = async () => {
 
@@ -10,19 +11,20 @@ const getProductsFromApi = async () => {
 
 const displayProduct = async () => {
     const container = document.getElementById("camera")
-   const data = await getProductsFromApi();
-   data.forEach(element => console.log(element));
+    const data = await getProductsFromApi();
+    data.forEach(element => console.log(element));
 
 }
 
 displayProduct();
 
-fetch("http://localhost:3000/api/cameras/")
-.then((response) => response.json())
-.then(cameras => {
-    cameras.forEach(camera => {
-    //Affichage des produits
 
+fetch("http://localhost:3000/api/cameras/")
+    .then((response) => response.json())
+    .then(cameras => {
+    //Affichage des produits
+    cameras.forEach(camera => {
+        
     const h2 = document.createElement("h2");
     h2.textContent = camera.name;
     const p = document.createElement("p");
@@ -32,9 +34,17 @@ fetch("http://localhost:3000/api/cameras/")
     const h3 = document.createElement("h3");
     h3.textContent = camera.description;
     const a = document.createElement("a");
-    a.hreft = '/Front-end/'
-    }
-    
-}
+    a.href = `/Front-end/html/product.html?id=${camera._id}`;
+
+    container.appendChild(h2);
+    container.appendChild(img);
+    container.appendChild(a);
+    a.appendChild(img);
+    container.appendChild(h3);
+    container.appendChild(p);
+
+    })
+
+});
 
  
