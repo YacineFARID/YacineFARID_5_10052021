@@ -1,6 +1,6 @@
 console.log("accueil");
 
-const container = document.getElementById("camera")
+const container = document.getElementById("listofproducts")
 
 const getProductsFromApi = async () => {
 
@@ -10,7 +10,7 @@ const getProductsFromApi = async () => {
 };
 
 const displayProduct = async () => {
-    const container = document.getElementById("camera")
+    const container = document.getElementById("listofproducts")
     const data = await getProductsFromApi();
     data.forEach(element => console.log(element));
 
@@ -24,24 +24,25 @@ fetch("http://localhost:3000/api/cameras/")
     .then(cameras => {
     //Affichage des produits
     cameras.forEach(camera => {
-        
-    const h2 = document.createElement("h2");
-    h2.textContent = camera.name;
+
+    const article = document.createElement("article");
+    article.classList.add("card");
+    const img = document.createElement("img");
     const p = document.createElement("p");
     p.textContent = camera.price / 100 + "€";
-    const img = document.createElement("img");
+    const h2 = document.createElement("h2");
+    h2.textContent = camera.name;
     img.src = camera.imageUrl;
-    const h3 = document.createElement("h3");
-    h3.textContent = camera.description;
     const a = document.createElement("a");
     a.href = `/Front-end/html/product.html?id=${camera._id}`;
-
-    container.appendChild(h2);
-    container.appendChild(img);
+    
+    container.appendChild(article);
+    article.appendChild(img);
     container.appendChild(a);
-    a.appendChild(img);
-    container.appendChild(h3);
-    container.appendChild(p);
+    a.appendChild(article);
+    article.appendChild(p);
+    article.appendChild(h2);
+    
 
     })
 
