@@ -20,6 +20,12 @@ a {
 p {
 text-align: left;
 margin:0;
+font-size: 20px;
+color: #B12704;
+}
+
+select {
+    width: 100px;
 }
 
 h2 {
@@ -34,6 +40,7 @@ img {
 #product {
     display: flex;
     flex-direction: row;
+    width: 100%;
 }
 
 .img-product {
@@ -49,8 +56,19 @@ img {
 }
 
 .buy-product {
-
+display: flex;
+flex-direction: column;
+padding:10px;
+border:1px solid grey;
+border-radius: 8px;
 }
 .add-product {
     width: 50%;
+}
+#product-quantity {
+    display: flex;
+    justify-content: space-between;
+}
+.select-quantity {
+    width: 30px;
 }

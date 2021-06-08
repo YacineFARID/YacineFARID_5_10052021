@@ -2,6 +2,11 @@ const productId = window.location.search.substr(4);
 
 const container = document.getElementById("product");
 
+const addToCart = document.getElementById("add-to-cart");
+
+const quantity = document.getElementById("product-quantity");
+
+const cart = document.getElementById("cart-validation");
 
 fetch(`http://localhost:3000/api/cameras/${productId}`)
 .then((response) => response.json())
@@ -33,7 +38,6 @@ fetch(`http://localhost:3000/api/cameras/${productId}`)
     divBuy.classList.add("buy-product");
     const price = document.createElement("p");
     price.textContent = product.price / 100 + "€";
-    const quantity = document.createElement("select");
     
     
     container.appendChild(divImg);
@@ -45,11 +49,14 @@ fetch(`http://localhost:3000/api/cameras/${productId}`)
     divDescription.appendChild(h3);
     container.appendChild(divBuy);
     divBuy.appendChild(price);
+    divBuy.appendChild(quantity);
+    divBuy.appendChild(addToCart);
+    divBuy.appendChild(cart);
 
     
 
         });
-        document.getElementById("add-to-card").addEventListener("click", ()=> {
+        document.getElementById("add-to-cart").addEventListener("click", ()=> {
             console.log(product);
             let objCommand = {
                 name : product.h2
