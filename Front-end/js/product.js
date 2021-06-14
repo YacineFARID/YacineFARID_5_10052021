@@ -6,8 +6,6 @@ const addToCart = document.getElementById("add-to-cart");
 
 const quantity = document.getElementById("product-quantity");
 
-const cart = document.getElementById("cart-validation");
-
 fetch(`http://localhost:3000/api/cameras/${productId}`)
 .then((response) => response.json())
 .then( product => {
@@ -16,13 +14,15 @@ fetch(`http://localhost:3000/api/cameras/${productId}`)
     divImg.classList.add("img-product");
     const img = document.createElement("img");
     img.src = product.imageUrl;
-
+    img.classList.add("img")
     const divDescription = document.createElement("div");
     divDescription.classList.add("description-product");
     const h2 = document.createElement("h2");
     h2.textContent = product.name;
+    h2.classList.add("h2")
     const p = document.createElement("p");
     p.textContent = product.price / 100 + "€";
+    p.classList.add("price")
     const h3 = document.createElement("h3");
     h3.textContent = product.description;
     const select = document.createElement("select");
@@ -51,15 +51,31 @@ fetch(`http://localhost:3000/api/cameras/${productId}`)
     divBuy.appendChild(price);
     divBuy.appendChild(quantity);
     divBuy.appendChild(addToCart);
-    divBuy.appendChild(cart);
 
     
 
         });
-        document.getElementById("add-to-cart").addEventListener("click", ()=> {
-            console.log(product);
-            let objCommand = {
-                name : product.h2
-            }
+
+        document.getElementById("add-to-cart").addEventListener('click', ()=> {
+           // console.log(document.querySelector('.price'));
+
+            const objOrder = {
+                id: productId,
+                img : document.querySelector('.img').src,
+                name : document.querySelector('.h2').innerHTML,
+                price : document.querySelector('.price').innerHTML,
+                quantity : document.querySelector('.select-quantity').value,
+            };
+
+            console.log(objOrder);
+
+            localStorage.setItem('Panier',JSON.stringify(objOrder));
+        
 
         });
+
+        
+
+
+
+
