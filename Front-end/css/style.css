@@ -90,6 +90,11 @@ img {
   height: 300px;
 }
 
+.img-cart{
+  width: 100px;
+  height: 100px;
+}
+
 #product {
   display: flex;
   justify-content: center;
@@ -103,9 +108,12 @@ img {
   padding-left: 40px;
   padding-right: 40px;
 }
+.img-product-cart {
+  padding-left: 40px;
+}
+
+
 .description-product {
-  display: flex;
-  flex-direction: column;
   width: 40%;
   padding: 0 40px;
 }
@@ -126,4 +134,10 @@ img {
 }
 .select-quantity {
   width: 30px;
+}
+
+#cart {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
