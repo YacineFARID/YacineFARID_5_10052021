@@ -62,7 +62,6 @@ h1 {
 
 article {
   width: 33%;
-  height: ;
   padding: 0 40px 40px;
 }
 
@@ -138,6 +137,35 @@ img {
 
 #cart {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+}
+.flex-product {
+  display: flex;
+  flex-direction: row;
+}
+.form-flex {
+  display: flex;
+  justify-content: center;
+}
+.form-cart{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+}
+.input-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.validation {
+  display: flex;
+  align-items: center;
 }

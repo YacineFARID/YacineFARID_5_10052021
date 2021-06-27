@@ -54,21 +54,22 @@ fetch(`http://localhost:3000/api/cameras/${productId}`)
 
     });
 
-// function ajout du produit dans le panier
-document.getElementById("add-to-cart").addEventListener('click', async()=> {
+    // function ajout du produit dans le panier
+    document.getElementById('add-to-cart').addEventListener('click', async()=> { 
+        // stockage produit dans un objet
+        let objOrder = {
+            id: productId,
+            img : document.querySelector('.img').src,
+            name : document.querySelector('.h2').innerHTML,
+            price : document.querySelector('.price').innerHTML,
+            quantity : document.querySelector('.select-quantity').value,
+        };
+
+        // création de la clé panier avec pour valeur nôtre objet
+        localStorage.setItem(localStorage.length, JSON.stringify(objOrder));
         
-// stockage produit dans un objet
-let objOrder = {
-    id: productId,
-    img : document.querySelector('.img').src,
-    name : document.querySelector('.h2').innerHTML,
-    price : document.querySelector('.price').innerHTML,
-    quantity : document.querySelector('.select-quantity').value,
-    };
-    // création de la clé panier avec pour valeur nôtre objet
-    localStorage.setItem('panier', JSON.stringify(objOrder));
-    // rechargement de la page
-    document.location.reload();
+        // rechargement de la page
+        document.location.reload();
     });
 
 // function pour afficher le nombre d'objets dans nôtre panier
@@ -76,7 +77,7 @@ const productNumber = () => {
 
     let showProductNumber = document.querySelector('.product-number');
 
-    const objOrder = JSON.parse(localStorage.getItem('panier'));
+    const objOrder = JSON.parse(localStorage.getItem(localStorage.length));
 
     let productCount = objOrder.quantity;
 

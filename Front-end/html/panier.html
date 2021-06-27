@@ -22,7 +22,39 @@
     <div id="cart">
     </div>
     <button id="clear" type="button">supprimer</button>
+    <div class="form-flex">
+        <form class="form-cart" action="post" type="submit">
+            <div class="input-cart">
+                <label for="firstname">PRENOM</label>
+                <input type="text" name="firstname" id="firstname" placeholder="Prénom" maxlength="25"
+                    pattern="[a-zA-ZÀ-ÿ]{2,}" required />
+            </div>
+            <div class="input-cart">
+                <label for="name">NOM</label>
+                <input type="text" name="name" id="name" placeholder="Nom" maxlength="25" pattern="[a-zA-ZÀ-ÿ]{2,}"
+                    required />
+            </div>
+            <div class="input-cart">
+                <label for="address">ADRESSE</label>
+                <input type="text" name="address" id="address" placeholder="Avenue montmartre" maxlength="50"
+                    required />
+            </div>
+            <div class="input-cart">
+                <label for="city">VILLE</label>
+                <input type="text" name="city" id="city" placeholder="Paris" maxlength="50" pattern="[A-Za-z]{2,}"
+                    required />
+            </div>
+            <div class="input-cart">
+                <label for="email">EMAIL</label>
+                <input type="email" name="email" id="email" placeholder="email@gmail.com"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}" required />
+            </div>
+            <button class="validation" id="submit">
+                <p>Valider vôtre commande</p>
+            </button>
+        </form>
     </div>
     <script src="/Front-end/js/panier.js"></script>
 </body>
+
 </html>
