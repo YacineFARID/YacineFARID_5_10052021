@@ -1,3 +1,10 @@
+// Récupération des champs du formulaire
+let firstName = document.getElementById('firstName');
+let lastName = document.getElementById('lastName');
+let address = document.getElementById('address');
+let city = document.getElementById('city');
+let email = document.getElementById('email');
+
 
 const localStorageToArray = () => {
     let result = [];
@@ -15,47 +22,48 @@ const localStorageToArray = () => {
     }
 
     return result
-}
+};
 
-const products = localStorageToArray();
-const container = document.getElementById("cart");
+const productsCart = localStorageToArray();
+const container = document.getElementById('cart');
 
-if (Object.keys(products).length <= 0) {
+if (Object.keys(productsCart).length <= 0) {
     // création d'un message si le panier est vide
-    const divNul = document.createElement("p");
+    const divNul = document.createElement('p');
     divNul.textContent = "Vôtre panier est vide";
 
     // chemin d'affichage du message ci-dessus
     container.appendChild(divNul);
 }
 else {
-    Object.keys(products).forEach(productId => {
-        const product = products[productId]
+    Object.keys(productsCart).forEach(productId => {
+        const product = productsCart[productId]
+        //console.log(product);
         if (product) {
             // création des éléments du produit dans le panier img, nom, quantité, prix, total, bouton supprimer
-            const divProduct = document.createElement("div");
+            const divProduct = document.createElement('div');
             divProduct.classList.add("flex-product");
-            const divImg = document.createElement("div");
-            const img = document.createElement("img");
+            const divImg = document.createElement('div');
+            const img = document.createElement('img');
             img.src = product.img;
-            img.classList.add("img-cart")
-            const divDescription = document.createElement("div");
-            divDescription.classList.add("description-product");
-            const h2 = document.createElement("h2");
+            img.classList.add('img-cart');
+            const divDescription = document.createElement('div');
+            divDescription.classList.add('description-product');
+            const h2 = document.createElement('h2');
             h2.textContent = product.name;
-            h2.classList.add("h2")
-            const quantity = document.createElement("p");
-            quantity.textContent = "quantité : " + product.quantity;
-            const divPrice = document.createElement("div");
-            divPrice.classList.add("div-price");
-            const pPrice = document.createElement("p");
-            pPrice.classList.add("price-cart");
-            pPrice.textContent = "prix : " + product.price;
-            const pTotal = document.createElement("p");
+            h2.classList.add('h2');
+            const quantity = document.createElement('p');
+            quantity.textContent = 'quantité : ' + product.quantity;
+            const divPrice = document.createElement('div');
+            divPrice.classList.add('div-price');
+            const pPrice = document.createElement('p');
+            pPrice.classList.add('price-cart');
+            pPrice.textContent = 'prix : ' + product.price;
+            const pTotal = document.createElement('p');
             totalPrice = (parseFloat(product.price) * product.quantity);
-            pTotal.textContent = "total : " + totalPrice + "€";
-            pTotal.classList.add("total-price");
-            const supr = document.getElementById("clear");
+            pTotal.textContent = 'total : ' + totalPrice + '€';
+            pTotal.classList.add('total-price');
+            const supr = document.getElementById('clear');
             
             //chemin d'affichage des éléments créé ci-dessus
             container.appendChild(divProduct);
@@ -70,10 +78,74 @@ else {
             divProduct.appendChild(supr);
 
             // function du boutton supprimer, pour supprimer le produit
-            document.getElementById("clear").addEventListener('click', () => {
-                localStorage.removeItem();
+            document.getElementById('clear').addEventListener('click', () => {
+                localStorage.clear();
                 document.location.reload();
             });
         }
     })
-}
+};
+
+
+
+//Création de l'objet à envoyer formulaire + articles.
+const validationOrder = {
+    contact: {},
+    products: [],
+  };
+
+let myForm = document.getElementById('myform');
+
+
+
+myForm.addEventListener('submit', async(event) => {
+    
+    console.log('test');
+  
+    //Avant d'envoyer un formulaire, vérification que le panier n'est pas vide et que le formulaire est true.
+   
+      
+        //Création de l'objet validationOrder contact + products
+        validationOrder.contact = {
+            firstName: firstName.value,
+            lastName: lastName.value,
+            address: address.value,
+            city: city.value,
+            email: email.value,   
+        };
+        
+        productsCart.forEach((article) => {
+        const quantity = JSON.parse(result).quantity;
+        console.log(quantity);
+        for (i=0; i < quantity ; i++) {
+            console.log(article.id);
+                validationOrder.products.push(article.id)
+            }
+        });
+        
+        
+  
+        //Envoi validation commande au backend
+        const validationFetch = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify(validationOrder),
+        };
+        
+        function getUrl() {
+            return "http://localhost:3000/api/cameras/order";
+        }
+        fetch(getUrl() , validationFetch)
+            .then(function (response) { response.json()
+                .then(function (resOrder) {
+                //console.log(resOrder);
+            });
+        });
+        event.preventDefault();
+});
+
+
+
+
