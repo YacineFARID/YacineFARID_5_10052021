@@ -87,63 +87,55 @@ else {
 };
 
 
-
-//Création de l'objet à envoyer formulaire + articles.
-const validationOrder = {
-    contact: {},
-    products: [],
-  };
-
 let myForm = document.getElementById('myform');
 
+myForm.addEventListener("submit", async(event) => {
 
-
-myForm.addEventListener('submit', async(event) => {
+    let orderData = {
+        contact: {},
+        products: []
+    };
     
-    console.log('test');
-  
-    //Avant d'envoyer un formulaire, vérification que le panier n'est pas vide et que le formulaire est true.
-   
-      
-        //Création de l'objet validationOrder contact + products
-        validationOrder.contact = {
-            firstName: firstName.value,
-            lastName: lastName.value,
-            address: address.value,
-            city: city.value,
-            email: email.value,   
-        };
-        
-        productsCart.forEach((article) => {
-        const quantity = JSON.parse(result).quantity;
+    //Création de l'objet validationOrder contact + products
+    orderData.contact = {
+        firstName: firstName.value,
+        lastName: lastName.value,
+        address: address.value,
+        city: city.value,
+        email: email.value,   
+    };
+    
+    productCarts.forEach((article) => {
+        console.log(article);
+        /*const quantity = productsCart.quantity;
         console.log(quantity);
         for (i=0; i < quantity ; i++) {
             console.log(article.id);
-                validationOrder.products.push(article.id)
-            }
+            validationOrder.products.push(article.id)
+        }*/
+    });
+
+    console.log(orderData);
+    
+    //Envoi validation commande au backend
+    /*const validationFetch = {
+        headers: {
+            "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(orderData),
+    };
+    
+   
+    fetch("http://localhost:3000/api/cameras/order" , validationFetch)
+        .then(function (response) { response.json()
+            .then(function (resOrder) {
+            console.log(resOrder);
         });
-        
-        
-  
-        //Envoi validation commande au backend
-        const validationFetch = {
-            headers: {
-                "Content-Type": "application/json",
-            },
-            method: "POST",
-            body: JSON.stringify(validationOrder),
-        };
-        
-        function getUrl() {
-            return "http://localhost:3000/api/cameras/order";
-        }
-        fetch(getUrl() , validationFetch)
-            .then(function (response) { response.json()
-                .then(function (resOrder) {
-                //console.log(resOrder);
-            });
-        });
-        event.preventDefault();
+    });*/
+
+    event.preventDefault();
+
 });
 
 
