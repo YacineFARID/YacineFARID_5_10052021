@@ -1,9 +1,9 @@
 // Récupération des champs du formulaire
-let firstName = document.getElementById('firstName');
-let lastName = document.getElementById('lastName');
-let address = document.getElementById('address');
-let city = document.getElementById('city');
-let email = document.getElementById('email');
+const firstName = document.getElementById('firstname');
+const lastName = document.getElementById('lastname');
+const address = document.getElementById('address');
+const city = document.getElementById('city');
+const email = document.getElementById('email');
 
 
 const localStorageToArray = () => {
@@ -38,7 +38,7 @@ if (Object.keys(productsCart).length <= 0) {
 else {
     Object.keys(productsCart).forEach(productId => {
         const product = productsCart[productId]
-        //console.log(product);
+        
         if (product) {
             // création des éléments du produit dans le panier img, nom, quantité, prix, total, bouton supprimer
             const divProduct = document.createElement('div');
@@ -90,12 +90,13 @@ else {
 let myForm = document.getElementById('myform');
 
 myForm.addEventListener("submit", async(event) => {
+    event.preventDefault();
 
     let orderData = {
         contact: {},
         products: []
     };
-    
+
     //Création de l'objet validationOrder contact + products
     orderData.contact = {
         firstName: firstName.value,
@@ -104,21 +105,18 @@ myForm.addEventListener("submit", async(event) => {
         city: city.value,
         email: email.value,   
     };
-    
-    productCarts.forEach((article) => {
-        console.log(article);
-        /*const quantity = productsCart.quantity;
-        console.log(quantity);
-        for (i=0; i < quantity ; i++) {
-            console.log(article.id);
-            validationOrder.products.push(article.id)
-        }*/
+
+    Object.keys(productsCart).forEach(productId => {
+        const product = productsCart[productId];
+        if (product) {
+            orderData.products.push(product.id);
+        }
     });
 
     console.log(orderData);
     
     //Envoi validation commande au backend
-    /*const validationFetch = {
+    const postParameters = {
         headers: {
             "Content-Type": "application/json",
         },
@@ -127,14 +125,12 @@ myForm.addEventListener("submit", async(event) => {
     };
     
    
-    fetch("http://localhost:3000/api/cameras/order" , validationFetch)
+    fetch("http://localhost:3000/api/cameras/order" , postParameters)
         .then(function (response) { response.json()
-            .then(function (resOrder) {
-            console.log(resOrder);
+            .then(function (responseOrder) {
+            console.log(responseOrder);
         });
-    });*/
-
-    event.preventDefault();
+    });
 
 });
 
