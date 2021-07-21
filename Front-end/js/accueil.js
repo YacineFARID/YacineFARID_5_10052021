@@ -1,5 +1,3 @@
-const container = document.getElementById("listofproducts")
-
 /* Promise pour récupérer un array de 5 objets
 utilisation de fetch pour appeler l'api*/
 const getProductsFromApi = async () => {
@@ -8,14 +6,15 @@ const getProductsFromApi = async () => {
     .then((response) => response.json())
 	.catch((error) => new Error(error));
 };
-
 //console.log(getProductsFromApi());
 
+// Affichage de la liste des caméras
 const displayProduct = async () => {
-    const container = document.getElementById("listofproducts");
+    //on cible la balise section ayant l'id "listofproducts"
+    const container = document.getElementById("listofcameras");
     const data = await getProductsFromApi();
-    
-    //Affichage des produits
+
+    //Création de la structure html pour chaque caméras
     data.forEach(camera => {
         const article = document.createElement("article");
         article.classList.add("card");
