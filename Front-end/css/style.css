@@ -4,14 +4,16 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* CSS du header */
 
 header {
-  background-image: url("");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   height: 150px;
-  position: relative;
+  background: #0F1111;
 }
 
 nav {
@@ -24,6 +26,11 @@ nav {
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 50px 60px 0 60px;
+}
+
+nav h2 {
+  color:blanchedalmond;
+  font-size: 4em;
 }
 
 nav li {
@@ -43,6 +50,11 @@ li a {
   padding: 5px;
 }
 
+.accueil {
+  color:white;
+  font-size: 1.5em;
+}
+
 .cart .fa-shopping-cart {
   padding-right: 5px;
   font-size: 20px;
@@ -55,68 +67,91 @@ li a {
   text-decoration: none;
 }
 
+
+
+/* CSS page index */
+
 h1 {
   text-align: center;
+  font-size: 3em;
+  padding: 40px 0;
+  color: #0F1111;
+  background: #EAEDED;
+}
+#listofcameras {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #EAEDED;
+
+}
+#listofcameras a {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding:0;
+  margin:0;
+  background: white;
+}
+article {
+  width: 100%;
+  padding: 40px 40px;
+  display: flex;
+  flex-direction: column;
+}
+article h2 {
   font-size: 2em;
 }
-
-article {
-  width: 33%;
-  padding: 0 40px 40px;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-}
-p {
+article p {
   text-align: left;
   margin: 0;
-  font-size: 20px;
-  color: #b12704;
+  font-size: 1.5em;
+  color: #B12704;
 }
 
-select {
-  width: 100px;
-}
-
-h2 {
-  text-align: left;
-  margin: 0;
-}
-img {
-  width: 100%;
-  height: 300px;
-}
-
-.img-cart{
-  width: 100px;
-  height: 100px;
-}
+/* CSS page produit */
 
 #product {
   display: flex;
   justify-content: center;
   flex-direction: row;
   width: 100%;
+  padding-top: 50px;
 }
-
-.img-product {
-  width: 400px;
-  height: 400px;
+#product img {
+  width: 500px;
+  height: 300px;
   padding-left: 40px;
   padding-right: 40px;
 }
-.img-product-cart {
-  padding-left: 40px;
-}
-
-
 .description-product {
   width: 40%;
   padding: 0 40px;
 }
+.description-product h2 {
+  font-size: 2em;
+  color:#0F1111;
+  text-align: left;
+  margin: 0;
+  padding-bottom: 5px;
 
+}
+.price {
+  font-size: 1.5em;
+  color: #B12704;
+  padding-bottom: 5px;
+}
+select {
+  width: 100px;
+}
+.description {
+  font-size: 1.5em;
+  color:#0F1111;
+  margin:0;
+  padding-top:20px;
+}
 .buy-product {
   display: flex;
   flex-direction: column;
@@ -124,31 +159,71 @@ img {
   border: 1px solid grey;
   border-radius: 8px;
 }
-.add-product {
-  width: 50%;
-}
 #product-quantity {
   display: flex;
   justify-content: space-between;
+  padding: 10px 0 200px;
+  font-size: 1.2em;
 }
 .select-quantity {
-  width: 30px;
+  width: 30%;
+}
+#add-to-cart {
+  border: 1px solid #B12704;
+  border-radius: 8px;
+  font-size: 1.2em;
+  background: #B12704;
+  color: white;
+  padding: 5px;
 }
 
+/* CSS page panier */
 #cart {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-top:50px;
 }
-.flex-product {
+.flex-cart {
   display: flex;
   flex-direction: row;
+  padding-left: 40px;
 }
+.img-cart {
+  width: 100px;
+  height: 100px;
+}
+.description-cart {
+  width: 40%;
+  padding: 0 40px;
+}
+.description-cart h2 {
+  font-size: 2em;
+  padding-bottom: 40px;
+}
+.description-cart p {
+  font-size: 1.5em;
+}
+.price-cart {
+  font-size: 1.5em;
+  color: #B12704;
+  padding-bottom: 40px;
+}
+.total-price {
+  font-size: 1.5em;
+  color:#B12704;
+}
+.total-cart {
+  font-size: 1.5em;
+  padding:40px;
+}
+
+/* CSS du formulaire */
 .form-flex {
   display: flex;
   justify-content: center;
 }
-.form-cart{
+.form-cart {
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -157,15 +232,47 @@ img {
   padding-top: 40px;
 }
 .input-cart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 20px;
-    text-align: center;
-    border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding-bottom: 20px;
+  text-align: center;
+  border-radius: 10px;
 }
-
+input {
+  width: 100%;
+  height: 30px;
+}
+label {
+  display: flex;
+}
 .validation {
   display: flex;
   align-items: center;
+  height: 30px;
+  background: #B12704;
+  color: white;
+  font-size: 1em;
+  border: 1px solid #B12704;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+/* CSS page validation */
+#confirmation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+}
+#confirmation h2 {
+  font-size: 3em;
+}
+.idconfirmation {
+  font-size: 2em;
+  padding:40px;
+}
+.totalconfirmation {
+  font-size: 2em;
+  color:#B12704;
 }
