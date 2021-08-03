@@ -67,7 +67,7 @@ else {
             productPrice.textContent = 'prix : ' + product.price;
             const totalPriceByProduct = document.createElement('p');
             price = (parseFloat(product.price) * product.quantity);
-            totalPriceByProduct.textContent = price + '€';
+            totalPriceByProduct.textContent ='total : ' + price + '€';
             totalPriceByProduct.classList.add('total-price');
             totalPrice += price;
             const supr = document.getElementById('clear');

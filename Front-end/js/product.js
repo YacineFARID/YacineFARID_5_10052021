@@ -19,7 +19,7 @@ fetch(`http://localhost:3000/api/cameras/${productId}`)
     divDescription.classList.add('description-product');
     const h2 = document.createElement('h2');
     h2.textContent = product.name;
-    h2.classList.add('h2')
+    h2.classList.add('h2');
     const p = document.createElement('p');
     p.textContent = product.price / 100 + '€';
     p.classList.add('price')
