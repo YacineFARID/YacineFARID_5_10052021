@@ -18,7 +18,7 @@ header {
   background: #0F1111;
 }
 main {
-  height: 1000px;
+  height: auto;
 }
 
 nav {
@@ -73,7 +73,6 @@ li a {
 }
 
 
-
 /* CSS page index */
 
 h1 {
@@ -125,6 +124,7 @@ article p {
   justify-content: center;
   flex-direction: row;
   width: 100%;
+  height: 1050px;
   padding-top: 50px;
 }
 #product img {
@@ -161,6 +161,7 @@ select {
 }
 .buy-product {
   display: flex;
+  height: 300px;
   flex-direction: column;
   padding: 10px;
   border: 1px solid grey;
@@ -169,7 +170,7 @@ select {
 #product-quantity {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0 200px;
+  padding: 10px 0 170px;
   font-size: 1.2em;
 }
 .select-quantity {
@@ -185,7 +186,11 @@ select {
 }
 
 /* CSS page panier */
+.main-cart {
+  height: 1050px;
+}
 #cart {
+  min-width: 60%;
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -223,14 +228,19 @@ select {
   color:#B12704;
 }
 .deletebutton {
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
+  width: 100px;
+  height: 100px;
   background: red;
 }
 .total-cart {
   font-size: 1.5em;
-  padding:40px;
+  padding-left:25px;
+}
+.empty {
+  display: flex;
+  justify-content: center;
+  font-size:2em;
+  color: #B12704;
 }
 
 /* CSS du formulaire */
@@ -275,6 +285,7 @@ label {
 
 /* CSS page validation */
 #confirmation {
+  height: 1050px;
   display: flex;
   flex-direction: column;
   align-items: center;

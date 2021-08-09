@@ -4,10 +4,10 @@ function getUrl() {
 };
 
 //Déclaration de la variable productStorage dans laquelle on récupère les clés et valeurs stockées dans le localStorage
-let productStorage = JSON.parse(localStorage.getItem("product"));
+//let productStorage = JSON.parse(localStorage.getItem("product"));
 
 //function ajouter dans le localStorage
-const addProductLocalStorage = () => {
+/*const addProductLocalStorage = () => {
     productStorage.push(objOrder);
     localStorage.setItem('product', JSON.stringify(productStorage));
-};
+};*/

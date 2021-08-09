@@ -5,53 +5,67 @@ const address = document.getElementById('address');
 const city = document.getElementById('city');
 const email = document.getElementById('email');
 
-console.log(productStorage);
-
-//-----------------------------------------------Affichage des produits du panier-----------------------------------
-//Sélection de l'Id ou on va injecter le html de la page panier
-const container = document.getElementById('cart');
+//Déclaration de la variable productStorage dans laquelle on récupère les clés et valeurs stockées dans le localStorage
+let productStorage = JSON.parse(localStorage.getItem("product"));
+//console.log(productStorage);
 
 let totalPrice = 0;
+const cart = document.getElementById("cart");
 
-//Si le panier est vide
-if(productStorage === null){
-    const cartEmpty = `
-    <p class="cart-empty">Vôtre panier est vide</p>
-    `;
-    container.innerHTML = cartEmpty;
-} else{
-// Si le panier n'est pas vide : afficher les produits du localStorage
-    let buildProductCart = [];
-
-    for(j = 0; j < productStorage.length; j++){
-        buildProductCart = buildProductCart + `
-            <div class="flex-cart">
-	            <div>
-		            <img src="${productStorage[j].img}" class"img-cart">
-	            </div>
-	            <div class="description-cart">
-		            <h2 class="h2">${productStorage[j].name}</h2>
-		            <p>Quantité :${productStorage[j].quantity}</p>
-		            <p class="price-cart">prix : ${productStorage[j].price} €</p>
-	            </div>
-	            <div>
-		            <p class="total-price">total: ${productStorage[j].quantity * productStorage[j].price}€</p>
-		            <button class="delete-button" type="button">Supprimer</button>
-	            </div>
-            </div>
+//Creer une fonction pour afficher les informations necessaires
+async function myCart() {
+    //SI le panier est vide, affiche un message Vôtre panier est vide
+    if (productStorage === null || productStorage == 0) {
+        const emptyCart = `
+        <div class="empty">Vôtre Panier Est Vide</div>
         `;
-    }
-    totalPriceOrder = `<div class="total-cart">Total de vôtre commande : €</div>
-    `;
+        cart.innerHTML = emptyCart;
+    } else {
+	for (let i = 0; i < productStorage.length; i++) {
+		
+		    cart.innerHTML += `<div class="flex-cart">
+	                <div>
+		                <img src="${productStorage[i].img}" class"img-cart">
+	                </div>
+	                <div class="description-cart">
+		                <h2 class="h2">${productStorage[i].name}</h2>
+		                <p>Quantité :${productStorage[i].quantity}</p>
+		                <p class="price-cart">prix : ${productStorage[i].price} €</p>
+	                </div>
+	                <div>
+		                <p class="total-price">total: ${productStorage[i].quantity * productStorage[i].price}€</p>
+		                <button class="delete" type="submit">Supprimer</button>
+	                </div>
+                </div>`;
+
+            totalPrice += productStorage[i].quantity * productStorage[i].price;
+            //console.log(totalPrice);
+
+		    //console.log(cart);
+
+		    //Supprimer une ligne
+
+		    let deleteButton = document.querySelectorAll(".delete");
+
+		    for (let i = 0; i < deleteButton.length; i++) {
+			    deleteButton[i].addEventListener("click", e => {
+				    let newSheet = productStorage.indexOf(productStorage[i]);
+				    productStorage.splice(newSheet, 1);
+				    localStorage.setItem("product", JSON.stringify(productStorage));
+				    deleteButton[i].parentElement.parentElement.remove();
+				    window.location.reload();
+			    });
+		    }
+	    }
+        //console.log(totalPrice);
+    const totalPriceOrder = `<div class="total-cart">Montant total de vôtre commande : ${totalPrice} €</div>`;
+    //console.log(totalPriceOrder);
     
-    if(j === productStorage.length){
-        //injection
-        container.innerHTML = buildProductCart;
+    cart.insertAdjacentHTML('beforeend', totalPriceOrder);
     }
-
-};
-
-
+    
+}
+myCart();
 
 
 let myForm = document.getElementById('myform');
@@ -99,11 +113,7 @@ myForm.addEventListener("submit", async(event) => {
         .then((response) => { response.json() 
         .then((data) => {
             console.log(data);
-            window.location = `./confirmation.html?orderId=${data.orderId}`;
+            window.location = `./confirmation.html?totalOrder=${totalPrice}&orderId=${data.orderId}`;
         });
     });
 });
-
-
-
-

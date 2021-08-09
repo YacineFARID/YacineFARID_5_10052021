@@ -4,17 +4,16 @@ let objOrder = {} ;
 let product = {} ;
 
 
-
 // récupération de la chaîne de requête dans l'url et récupération de nôtre id dans l'url
 const productIdParams = new URLSearchParams(window.location.search);
 let cameraId = productIdParams.get('id');
+//console.log(cameraId); //------------Plan de test-----------
 
 // Affichage du produit
 const showProduct = async () => {
     
-    // création d'une variable dans laquelle on attend la réponse de l'api qui nous renvoit l'idde nôtre produit
+    // création d'une variable dans laquelle on attend la réponse de l'api qui nous renvoit l'id de nôtre produit
     let data = await fetch(`${getUrl()}/${cameraId}`);
- 
     try {
         if (data.ok) {
             product = await data.json();
@@ -65,34 +64,43 @@ const showProduct = async () => {
 
 
     const addToCart = document.getElementById("add-to-cart");
-    console.log(addToCart);
 
     // function ajout du produit dans le panier
-    addToCart.addEventListener('click', async()=> { 
+    addToCart.addEventListener('click', function(event) { 
+            event.preventDefault();
+
+
         // stockage produit dans un objet
-        
             objOrder = {
                 id: product._id,
                 img : product.imageUrl,
                 name : product.name,
                 price : product.price/100,
-                quantity : document.querySelector('.select-quantity').value,
+                quantity : parseFloat(document.querySelector('.select-quantity').value),
             }
         
-        
-        // création de la clé panier avec pour valeur nôtre objet
-        //s'il y'a une clé produit dans le localStorage
-        if(productStorage){
-            addProductLocalStorage();
-        }
-        //S'il n'y a pas de clé produit dans le localStorage
-        else {
-            productStorage = [];
-            addProductLocalStorage();
-        }
+            function addProductInCart() {
+                const productStorage = JSON.parse(localStorage.getItem("product")) || [];
+                let productInCart = false;
+                for (let i = 0; i < productStorage.length; i++) {
+                    if (productStorage[i].id === objOrder.id) {
+                        productInCart = true;
+                        productStorage[i].quantity += parseInt(objOrder.quantity);
+                        productStorage[i].price = objOrder.price;
+                    }
+                    console.log(productStorage[i].price);
+                }
+                if (!productInCart) {
+                    objOrder.price = (product.price / 100) * objOrder.quantity;
+                    productStorage.push(objOrder);
+                }
+                
+                localStorage.setItem("product", JSON.stringify(productStorage));
 
-        // rechargement de la page
-        document.location.reload();
+                // rechargement de la page
+                document.location.reload();
+            };
+            addProductInCart();
     });
 };
 showProduct();

@@ -11,16 +11,15 @@ const getProductsFromApi = function()  {
         })
 };
 getProductsFromApi();
-//console.log(getProductsFromApi());
+//console.log(getProductsFromApi()); //-----------Plan de test------------
 
 // Affichage de la liste des caméras sur nôtre page index
 const displayProduct = async () => {
     // on créé un variable data correspondant au résultat de nôtre function getProductsFromApi() de nôtre fichier fonction.js
     const data = await getProductsFromApi();
+    //console.log(data); //--------------Plan de test-----------
 
     for(let i = 0; i < data.length; i++) {
-    //console.log(data[i].name);
-
     // création de la structure Html de nos produits 
     indexHtml += `<a href="/Front-end/html/product.html?id=${data[i]._id}">
         <article>
@@ -29,11 +28,8 @@ const displayProduct = async () => {
         <p>${data[i].price/100}</p>     
         </article>
         </a>`
-
     }
 //on cible la balise section ayant l'id "listofcameras" dans nôtre page index.html
    document.getElementById("listofcameras").innerHTML = indexHtml;
-  
 };
-
 displayProduct();
