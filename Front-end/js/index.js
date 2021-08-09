@@ -1,40 +1,39 @@
+// déclaration de variables
+
+let indexHtml = '';
+
 /* Promise pour récupérer un array de 5 objets
 utilisation de fetch pour appeler l'api*/
-const getProductsFromApi = async () => {
-
-    return await fetch("http://localhost:3000/api/cameras/")
-    .then((response) => response.json())
-	.catch((error) => new Error(error));
+const getProductsFromApi = function()  {
+    return fetch(getUrl())
+        .then(function (response) { 
+            return response.json()
+        })
 };
+getProductsFromApi();
 //console.log(getProductsFromApi());
 
-// Affichage de la liste des caméras
+// Affichage de la liste des caméras sur nôtre page index
 const displayProduct = async () => {
-    //on cible la balise section ayant l'id "listofproducts"
-    const container = document.getElementById("listofcameras");
+    // on créé un variable data correspondant au résultat de nôtre function getProductsFromApi() de nôtre fichier fonction.js
     const data = await getProductsFromApi();
 
-    //Création de la structure html pour chaque caméras
-    data.forEach(camera => {
-        const article = document.createElement('article');
-        const img = document.createElement('img');
-        const p = document.createElement('p');
-        p.textContent = camera.price / 100 + '€';
-        const h2 = document.createElement('h2');
-        h2.textContent = camera.name;
-        img.src = camera.imageUrl;
-        const a = document.createElement('a');
-        a.href = `/Front-end/html/product.html?id=${camera._id}`;
-        
-        container.appendChild(article);
-        article.appendChild(img);
-        container.appendChild(a);
-        a.appendChild(article);
-        article.appendChild(h2);
-        article.appendChild(p);
-    })
+    for(let i = 0; i < data.length; i++) {
+    //console.log(data[i].name);
+
+    // création de la structure Html de nos produits 
+    indexHtml += `<a href="/Front-end/html/product.html?id=${data[i]._id}">
+        <article>
+        <img src="${data[i].imageUrl}" alt="photos d'appareils photos">
+        <h2>${data[i].name}</h2>
+        <p>${data[i].price/100}</p>     
+        </article>
+        </a>`
+
+    }
+//on cible la balise section ayant l'id "listofcameras" dans nôtre page index.html
+   document.getElementById("listofcameras").innerHTML = indexHtml;
+  
 };
 
 displayProduct();
-
- 

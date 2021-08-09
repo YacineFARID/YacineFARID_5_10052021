@@ -70,7 +70,8 @@ else {
             totalPriceByProduct.textContent ='total : ' + price + '€';
             totalPriceByProduct.classList.add('total-price');
             totalPrice += price;
-            const supr = document.getElementById('clear');
+            const deleteButton = document.createElement('button');
+            deleteButton.classList.add('deletebutton');
 
             
             //chemin d'affichage des éléments créé ci-dessus
@@ -83,18 +84,17 @@ else {
             divProduct.appendChild(divPrice);
             divPrice.appendChild(productPrice);
             divPrice.appendChild(totalPriceByProduct);
-            divProduct.appendChild(supr);
+            divProduct.appendChild(deleteButton);
 
             
-
-            // function du boutton supprimer, pour supprimer le produit
-            document.getElementById('clear').addEventListener('click', () => {
-                localStorage.clear();
-                document.location.reload();
-            })
+            
+            /* function du boutton supprimer, pour supprimer le produit
+            document.getElementsByClassName('deletebutton').addEventListener('click', () => {
+               
+            })*/
         }
     })
-    console.log(totalPrice);
+    //console.log(totalPrice);
     const totalPriceOrder = document.createElement('div');
     totalPriceOrder.textContent ='Total de vôtre commande ' + totalPrice + '€';
     totalPriceOrder.classList.add('total-cart');
@@ -105,6 +105,19 @@ else {
 
 setCart();
 
+let delete_Btn = document.querySelectorAll('.deletebutton');
+//console.log(delete_Btn);
+
+/*for (let i = 0; i < delete_Btn.length; i++) {
+    let deleteId = localStorage.length[i].id;
+    console.log(deleteId);
+
+    delete_Btn[i].addEventListener('click', (event) =>{
+        event.preventDefault();
+        cart = cart.filter(element => element.id !== deleteId);
+        console.log(cart);
+    });
+};*/
 
 let myForm = document.getElementById('myform');
 

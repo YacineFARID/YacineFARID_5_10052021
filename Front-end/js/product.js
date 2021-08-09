@@ -1,3 +1,4 @@
+//Récupération de l'id du produit sélectionné
 const productId = window.location.search.substr(4);
 
 const container = document.getElementById("product");
