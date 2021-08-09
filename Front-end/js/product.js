@@ -1,72 +1,80 @@
-//Récupération de l'id du produit sélectionné
-const productId = window.location.search.substr(4);
+// déclaration de variables
+let productHtml = ''; //variable qu'on utilisera pour injecter la structure html de nôtre produit
+let objOrder = {} ;
+let product = {} ;
 
-const container = document.getElementById("product");
 
-const addToCart = document.getElementById("add-to-cart");
 
-const quantity = document.getElementById("product-quantity");
+// récupération de la chaîne de requête dans l'url et récupération de nôtre id dans l'url
+const productIdParams = new URLSearchParams(window.location.search);
+let cameraId = productIdParams.get('id');
 
-fetch(`http://localhost:3000/api/cameras/${productId}`)
-.then((response) => response.json())
-.then( product => {
-
-    const divImg = document.createElement('div');
-    divImg.classList.add('img-product');
-    const img = document.createElement('img');
-    img.src = product.imageUrl;
-    img.classList.add('img')
-    const divDescription = document.createElement('div');
-    divDescription.classList.add('description-product');
-    const h2 = document.createElement('h2');
-    h2.textContent = product.name;
-    h2.classList.add('h2');
-    const p = document.createElement('p');
-    p.textContent = product.price / 100 + '€';
-    p.classList.add('price')
-    const h3 = document.createElement('p');
-    h3.textContent = product.description;
-    h3.classList.add('description')
-    const select = document.createElement('select');
-    product.lenses.forEach(element => {
-        const option = document.createElement('option');
-        option.value = element;
-        option.textContent = element;
-        select.appendChild(option);
-        console.log(element);
-    });
-
-    const divBuy = document.createElement('div');
-    divBuy.classList.add('buy-product');
-    const price = document.createElement('p');
-    price.textContent = product.price / 100 + '€';
-    price.classList.add('price')
+// Affichage du produit
+const showProduct = async () => {
     
-    
-    container.appendChild(divImg);
-    divImg.appendChild(img);
-    container.appendChild(divDescription);
-    divDescription.appendChild(h2);
-    divDescription.appendChild(p);
-    divDescription.appendChild(select);
-    divDescription.appendChild(h3);
-    container.appendChild(divBuy);
-    divBuy.appendChild(price);
-    divBuy.appendChild(quantity);
-    divBuy.appendChild(addToCart);
+    // création d'une variable dans laquelle on attend la réponse de l'api qui nous renvoit l'idde nôtre produit
+    let data = await fetch(`${getUrl()}/${cameraId}`);
+ 
+    try {
+        if (data.ok) {
+            product = await data.json();
+            //console.log(product);
 
-    });
+            let lenses = "";
 
+            objOrder = {
+                id: product._id,
+                img : product.imageUrl,
+                name : product.name,
+                price : product.price,
+                quantity : 0,
+            };
+            //console.log(objOrder);
+      
+            //Option de nôtre produit, choix de l'objectif de l'appareil photo, forEach product.lenses
+            product.lenses.forEach((lense) => {
+                lenses += `<option value="${lense}">${lense}</option>`;
+            });
+
+            //Structure Html de la page produit
+            productHtml = `
+                        <div class="img-product">
+                            <img src="${product.imageUrl}" alt="Photographie de l'appareil" class="img">
+                        </div>
+                        <div class ="description-product">
+                            <h2 class="h2">${product.name}</h2>
+                            <p class="price">${product.price/100} €</p>
+                            <label for="lentille">Type de lentille :</label><br>
+                            <select name="lentille" id="lentille">${lenses}</select>
+                            <p class="description">${product.description}</p>
+                        </div>
+                        <div class="buy-product">
+                            <p class="price">${product.price/100} €</p>
+                            <div id="product-quantity">Quantité : <input type="number" class="select-quantity" min="1" max="10" value="1"></div>
+                            <button id="add-to-cart" type="submit" name="add-to-cart">Ajouter au panier</button>
+                        </div>`;
+                                      
+        }
+        
+
+        document.getElementById("product").innerHTML = productHtml;
+        
+    }  catch (error) {
+        //console.log(error);
+    }
+    const addToCart = document.getElementById("add-to-cart");
+    console.log(addToCart);
     // function ajout du produit dans le panier
     document.getElementById('add-to-cart').addEventListener('click', async()=> { 
         // stockage produit dans un objet
-        let objOrder = {
-            id: productId,
-            img : document.querySelector('.img').src,
-            name : document.querySelector('.h2').innerHTML,
-            price : document.querySelector('.price').innerHTML,
-            quantity : document.querySelector('.select-quantity').value,
-        };
+        
+            objOrder = {
+                id: product._id,
+                img : product.imageUrl,
+                name : product.name,
+                price : product.price/100,
+                quantity : document.querySelector('.select-quantity').value,
+            }
 
         // création de la clé panier avec pour valeur nôtre objet
         localStorage.setItem(localStorage.length, JSON.stringify(objOrder));
@@ -74,6 +82,20 @@ fetch(`http://localhost:3000/api/cameras/${productId}`)
         // rechargement de la page
         document.location.reload();
     });
+};
+showProduct();
+
+
+
+
+
+
+
+
+
+
+
+    
 
 
 
