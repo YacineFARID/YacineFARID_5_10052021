@@ -5,6 +5,11 @@ const address = document.getElementById('address');
 const city = document.getElementById('city');
 const email = document.getElementById('email');
 
+/*
+
+
+
+*/
 
 const localStorageToArray = () => {
     let result = [];
