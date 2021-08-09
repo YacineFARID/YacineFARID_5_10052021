@@ -56,16 +56,19 @@ const showProduct = async () => {
                                       
         }
         
-
+        //injection de la structure HTML
         document.getElementById("product").innerHTML = productHtml;
         
     }  catch (error) {
         //console.log(error);
     }
+
+
     const addToCart = document.getElementById("add-to-cart");
     console.log(addToCart);
+
     // function ajout du produit dans le panier
-    document.getElementById('add-to-cart').addEventListener('click', async()=> { 
+    addToCart.addEventListener('click', async()=> { 
         // stockage produit dans un objet
         
             objOrder = {
@@ -75,10 +78,27 @@ const showProduct = async () => {
                 price : product.price/100,
                 quantity : document.querySelector('.select-quantity').value,
             }
+        
+        //Déclaration de la variable productStorage dans laquelle on récupère les clés et valeurs stockées dans le localStorage
+        let productStorage = JSON.parse(localStorage.getItem("product"));
+
+        //function ajouter dans le localStorage
+        const addProductLocalStorage = () => {
+            productStorage.push(objOrder);
+            localStorage.setItem('product', JSON.stringify(productStorage));
+        };
 
         // création de la clé panier avec pour valeur nôtre objet
-        localStorage.setItem(localStorage.length, JSON.stringify(objOrder));
-        
+        //s'il y'a une clé produit dans le localStorage
+        if(productStorage){
+            addProductLocalStorage();
+        }
+        //S'il n'y a pas de clé produit dans le localStorage
+        else {
+            productStorage = [];
+            addProductLocalStorage();
+        }
+
         // rechargement de la page
         document.location.reload();
     });
