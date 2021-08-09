@@ -79,15 +79,7 @@ const showProduct = async () => {
                 quantity : document.querySelector('.select-quantity').value,
             }
         
-        //Déclaration de la variable productStorage dans laquelle on récupère les clés et valeurs stockées dans le localStorage
-        let productStorage = JSON.parse(localStorage.getItem("product"));
-
-        //function ajouter dans le localStorage
-        const addProductLocalStorage = () => {
-            productStorage.push(objOrder);
-            localStorage.setItem('product', JSON.stringify(productStorage));
-        };
-
+        
         // création de la clé panier avec pour valeur nôtre objet
         //s'il y'a une clé produit dans le localStorage
         if(productStorage){

@@ -10,10 +10,15 @@ a {
 }
 
 /* CSS du header */
-
+body {
+  background: #EAEDED;
+}
 header {
   height: 150px;
   background: #0F1111;
+}
+main {
+  height: 1000px;
 }
 
 nav {
@@ -181,27 +186,30 @@ select {
 
 /* CSS page panier */
 #cart {
+  width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top:50px;
+  margin:50px 20%;
+  border: black solid;
+  background: blanchedalmond;
 }
 .flex-cart {
   display: flex;
   flex-direction: row;
-  padding-left: 40px;
+  padding-left: 20px;
 }
-.img-cart {
+.flex-cart img {
   width: 100px;
   height: 100px;
+  padding: 10px;
 }
 .description-cart {
-  width: 40%;
+  width: 75%;
   padding: 0 40px;
 }
 .description-cart h2 {
   font-size: 2em;
-  padding-bottom: 40px;
 }
 .description-cart p {
   font-size: 1.5em;
@@ -209,7 +217,6 @@ select {
 .price-cart {
   font-size: 1.5em;
   color: #B12704;
-  padding-bottom: 40px;
 }
 .total-price {
   font-size: 1.5em;

@@ -19,40 +19,45 @@
             </ul>
         </nav>
     </header>
-    <div id="cart">
-    </div>
-    <div class="form-flex">
-        <form class="form-cart" action="confirmation.html" method="POST" type="submit" id="myform">
-            <div class="input-cart">
-                <label for="firstname">PRENOM</label>
-                <input type="text" name="firstname" id="firstname" placeholder="Prénom" maxlength="25"
-                    pattern="[a-zA-ZÀ-ÿ]{2,}" required />
-            </div>
-            <div class="input-cart">
-                <label for="lastname">NOM</label>
-                <input type="text" name="lastname" id="lastname" placeholder="Nom" maxlength="25"
-                    pattern="[a-zA-ZÀ-ÿ]{2,}" required />
-            </div>
-            <div class="input-cart">
-                <label for="address">ADRESSE</label>
-                <input type="text" name="address" id="address" placeholder="Avenue montmartre" maxlength="50"
-                    required />
-            </div>
-            <div class="input-cart">
-                <label for="city">VILLE</label>
-                <input type="text" name="city" id="city" placeholder="Paris" maxlength="50" pattern="[A-Za-z]{2,}"
-                    required />
-            </div>
-            <div class="input-cart">
-                <label for="email">EMAIL</label>
-                <input type="email" name="email" id="email" placeholder="email@gmail.com"
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}" required />
-            </div>
-            <button class="validation" id="submit">
-                <p>Valider vôtre commande</p>
-            </button>
-        </form>
-    </div>
+    <main>
+        <div id="cart">
+            <div class="total-cart"></div>
+        </div>
+        <div class="form-flex">
+            <form class="form-cart" action="confirmation.html" method="POST" type="submit" id="myform">
+                <div class="input-cart">
+                    <label for="firstname">PRENOM</label>
+                    <input type="text" name="firstname" id="firstname" placeholder="Prénom" maxlength="25"
+                        pattern="[a-zA-ZÀ-ÿ]{2,}" required />
+                </div>
+                <div class="input-cart">
+                    <label for="lastname">NOM</label>
+                    <input type="text" name="lastname" id="lastname" placeholder="Nom" maxlength="25"
+                        pattern="[a-zA-ZÀ-ÿ]{2,}" required />
+                </div>
+                <div class="input-cart">
+                    <label for="address">ADRESSE</label>
+                    <input type="text" name="address" id="address" placeholder="Avenue montmartre" maxlength="50"
+                        required />
+                </div>
+                <div class="input-cart">
+                    <label for="city">VILLE</label>
+                    <input type="text" name="city" id="city" placeholder="Paris" maxlength="50" pattern="[A-Za-z]{2,}"
+                        required />
+                </div>
+                <div class="input-cart">
+                    <label for="email">EMAIL</label>
+                    <input type="email" name="email" id="email" placeholder="email@gmail.com"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}" required />
+                </div>
+                <button class="validation" id="submit">
+                    <p>Valider vôtre commande</p>
+                </button>
+            </form>
+        </div>
+    </main>
+    <footer></footer>
+    <script src="/Front-end/js/fonction.js"></script>
     <script src="/Front-end/js/panier.js"></script>
 </body>
 
