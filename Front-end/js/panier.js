@@ -14,12 +14,12 @@ const cart = document.getElementById("cart");
 
 //Creer une fonction pour afficher les informations necessaires
 async function myCart() {
-    //SI le panier est vide, affiche un message Vôtre panier est vide
+    //SI le panier est vide, affiche un message Vôtre panier est vide -------------Plan de Test----------------------
     if (productStorage === null || productStorage == 0) {
         const emptyCart = `
-        <div class="empty">Vôtre Panier Est Vide</div>
+        <div class="empty">Vôtre Panier Est Vide</div>  
         `;
-        cart.innerHTML = emptyCart;
+        cart.innerHTML = emptyCart;                          
     } else {
 	for (let i = 0; i < productStorage.length; i++) {
 		
@@ -44,9 +44,10 @@ async function myCart() {
 		    //console.log(cart);
 
 		    //Supprimer une ligne
-
+            //déclaration de la variable qui va nous servir à ciblé les boutons supprimer
 		    let deleteButton = document.querySelectorAll(".delete");
 
+            //boucle for de nos boutons delete qui met à jour le localStorage et recharge la page après suppression de la ligne supprimée
 		    for (let i = 0; i < deleteButton.length; i++) {
 			    deleteButton[i].addEventListener("click", e => {
 				    let newSheet = productStorage.indexOf(productStorage[i]);
@@ -63,18 +64,64 @@ async function myCart() {
     
     cart.insertAdjacentHTML('beforeend', totalPriceOrder);
     }
-    
 }
 myCart();
 
 
+function inputRegexTests() {
+    //input prénom
+    //console.log(inputRegex(firstName.value));
+    if (!inputRegex(firstName.value)) {
+      messageError =
+        "💡️ Votre PRENOM doit contenir au moins 1 lettre sans caractères spéciaux et sans chiffres.";
+      inputError = true;
+    }
+  
+    //input nom
+    //console.log(inputRegex(lastName.value));
+    if (!inputRegex(lastName.value)) {
+      messageError =
+        "💡️ Votre NOM doit contenir au moins 1 lettre sans caractères spéciaux et sans chiffres.";
+      inputError = true;
+    }
+
+    //input adresse
+    console.log(inputRegexAdress(address.value));
+    if (!inputRegexAdresse(address.value)) {
+      messageError =
+        "💡️ Votre ADRESSE POSTALE ne doit pas contenir de caractères spéciaux.";
+      inputError = true;
+    }
+  
+    //input ville
+    console.log(inputRegexText(city.value));
+    if (!inputRegex(city.value)) {
+      messageError =
+        "💡️ Votre VILLE ne doit pas contenir de caractères spéciaux.";
+      inputError = true;
+    }
+  
+    //input mail
+    console.log(inputRegexMail(email.value));
+    if (!inputRegexMail(email.value)) {
+      messageError =
+        "💡️ Votre MAIL ne doit pas contenir de caractères spéciaux et doit contenir @ et un .";
+      inputError = true;
+    }
+};
+  
+
+// déclaration de la variable qui va nous servir a ciblé le formulaire
 let myForm = document.getElementById('myform');
 
 // Envoi du Formulaire et du Panier à l'API
 myForm.addEventListener("submit", async(event) => {
     event.preventDefault();
 
-    // Création de l'objet contact + products
+    //Appel de la function inputRegexTests() pour tester nos inputs
+    inputRegexTests();
+
+    // Création de l'objet contact et de l'array products
     let orderData = {
         contact: {},
         products: []
@@ -89,7 +136,7 @@ myForm.addEventListener("submit", async(event) => {
         email: email.value,   
     };
 
-    // Création de l'objet products
+    // Création de l'array products
     productStorage.forEach(productId => {
         const product = productStorage[productId];
         if (product) {

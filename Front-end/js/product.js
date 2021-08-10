@@ -7,7 +7,7 @@ let product = {} ;
 // récupération de la chaîne de requête dans l'url et récupération de nôtre id dans l'url
 const productIdParams = new URLSearchParams(window.location.search);
 let cameraId = productIdParams.get('id');
-//console.log(cameraId); //------------Plan de test-----------
+//console.log(cameraId);   ------------------------------------Plan de test-----------
 
 // Affichage du produit
 const showProduct = async () => {
@@ -17,10 +17,12 @@ const showProduct = async () => {
     try {
         if (data.ok) {
             product = await data.json();
-            //console.log(product);
+            //console.log(product);  -------------------------------Plan de Test--------------------------------
 
+            //déclaration de la variable que l'on va utiliser pour l'option du produit
             let lenses = "";
 
+            //déclaration de l'objet et initialisation de ses valeurs
             objOrder = {
                 id: product._id,
                 img : product.imageUrl,
@@ -28,7 +30,7 @@ const showProduct = async () => {
                 price : product.price,
                 quantity : 0,
             };
-            //console.log(objOrder);
+            //console.log(objOrder); ----------------------------Plan de Test----------------------------------
       
             //Option de nôtre produit, choix de l'objectif de l'appareil photo, forEach product.lenses
             product.lenses.forEach((lense) => {
@@ -55,20 +57,19 @@ const showProduct = async () => {
                                       
         }
         
-        //injection de la structure HTML
+        //injection de la structure HTML dans l'Id "product"
         document.getElementById("product").innerHTML = productHtml;
         
     }  catch (error) {
         //console.log(error);
     }
 
-
+    // déclaration de la variable qui va cibler l'Id de nôtre bouton ajouter au panier
     const addToCart = document.getElementById("add-to-cart");
 
     // function ajout du produit dans le panier
     addToCart.addEventListener('click', function(event) { 
             event.preventDefault();
-
 
         // stockage produit dans un objet
             objOrder = {
@@ -77,8 +78,12 @@ const showProduct = async () => {
                 name : product.name,
                 price : product.price/100,
                 quantity : parseFloat(document.querySelector('.select-quantity').value),
+                // utilisation de parseFloat pour que les valeurs additionnés ne soient pas considéré comme des chaînes de caractères
             }
         
+            /* function qui va vérifié si la clé "product" existe dans le localStorage et 
+            vérifier si certains produits ont le même id et additionner leurs quantités
+            pour éviter de créer une nouvelle ligne dans nôtre panier pour le même produit*/
             function addProductInCart() {
                 const productStorage = JSON.parse(localStorage.getItem("product")) || [];
                 let productInCart = false;
@@ -95,6 +100,7 @@ const showProduct = async () => {
                     productStorage.push(objOrder);
                 }
                 
+                // création de la clé "product" pour stocker nos produits dans le localStorage
                 localStorage.setItem("product", JSON.stringify(productStorage));
 
                 // rechargement de la page

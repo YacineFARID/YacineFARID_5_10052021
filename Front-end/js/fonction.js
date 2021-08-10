@@ -3,11 +3,15 @@ function getUrl() {
     return "http://localhost:3000/api/cameras/";
 };
 
-//Déclaration de la variable productStorage dans laquelle on récupère les clés et valeurs stockées dans le localStorage
-//let productStorage = JSON.parse(localStorage.getItem("product"));
 
-//function ajouter dans le localStorage
-/*const addProductLocalStorage = () => {
-    productStorage.push(objOrder);
-    localStorage.setItem('product', JSON.stringify(productStorage));
-};*/
+function inputRegexText(text) {
+    return /^[A-Za-z]{1,20}$/.test(texte);
+}
+  
+function inputRegexMail(textemail) {
+    return /^[A-Za-z0-9-éàè.]+@[a-z.]+[a-z.]$/.test(email);
+}
+  
+function inputRegexAdress(textadresse) {
+    return /^[A-Za-z0-9-éàè\s]{1,50}$/.test(Adress);
+}
