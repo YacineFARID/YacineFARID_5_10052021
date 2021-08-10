@@ -109,8 +109,6 @@ async function inputRegexTests() {
       inputError = true;
     }
 };
-  //Appel de la function inputRegexTests() pour tester nos inputs
-  inputRegexTests();
   
 
 // déclaration de la variable qui va nous servir a ciblé le formulaire
@@ -120,7 +118,8 @@ let myForm = document.getElementById('myform');
 myForm.addEventListener("submit", async(event) => {
     event.preventDefault();
 
-    
+    //Appel de la function inputRegexTests() pour tester nos inputs
+  inputRegexTests();
 
     // Création de l'objet contact et de l'array products
     let orderData = {
