@@ -4,23 +4,27 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
+body {
+  background: #eaeded;
+}
 a {
   text-decoration: none;
   color: black;
 }
 
-/* CSS du header */
-body {
-  background: #EAEDED;
-}
-header {
+
+/* CSS du footer */
+footer {
   height: 150px;
-  background: #0F1111;
-}
-main {
-  height: auto;
+  background: #0f1111;
 }
 
+/* CSS du header */
+
+header {
+  height: 150px;
+  background: #0f1111;
+}
 nav {
   position: absolute;
   top: 0;
@@ -30,41 +34,39 @@ nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 50px 60px 0 60px;
+  padding: 10px 0 0 10px;
 }
-
 nav h2 {
-  color:blanchedalmond;
-  font-size: 4em;
+  color: blanchedalmond;
+  font-size: 3em;
 }
-
+nav ul {
+  padding: 20px 0px 10px 0;
+}
 nav li {
   list-style: none;
   display: inline-block;
-  font-size: 22px;
-  padding-right: 10px;
-  padding-left: 10px;
+  font-size: 1.5em;
+  padding: 0 5px;
 }
-
 nav li span {
   padding-left: 5px;
   padding-right: 5px;
 }
-
 li a {
-  padding: 5px;
+  padding: 8px;
 }
-
 .accueil {
-  color:white;
+  color: white;
   font-size: 1.5em;
 }
-
+.cart {
+  font-size: 1.6em;
+}
 .cart .fa-shopping-cart {
   padding-right: 5px;
-  font-size: 20px;
+  font-size: 1.2em;
 }
-
 .cart a {
   background-color: #b12704;
   color: #fff;
@@ -72,31 +74,29 @@ li a {
   text-decoration: none;
 }
 
-
 /* CSS page index */
 
 h1 {
   text-align: center;
-  font-size: 3em;
+  font-size: 2.5em;
   padding: 40px 0;
-  color: #0F1111;
-  background: #EAEDED;
+  color: #0f1111;
+  background: #eaeded;
 }
 #listofcameras {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #EAEDED;
-
+  background: #eaeded;
 }
 #listofcameras a {
-  width: 30%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
   margin-bottom: 10px;
   background: white;
   border-radius: 20px;
@@ -114,7 +114,7 @@ article p {
   text-align: left;
   margin: 0;
   font-size: 1.5em;
-  color: #B12704;
+  color: #b12704;
 }
 
 /* CSS page produit */
@@ -122,32 +122,33 @@ article p {
 #product {
   display: flex;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   height: 1050px;
   padding-top: 50px;
 }
 #product img {
-  width: 500px;
-  height: 300px;
-  padding-left: 40px;
-  padding-right: 40px;
+  width: 100%;
+  height: 250px;
 }
 .description-product {
-  width: 40%;
-  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 20px 20px;
 }
 .description-product h2 {
+  display: flex;
+  flex-direction: row;
   font-size: 2em;
-  color:#0F1111;
+  color: #0f1111;
   text-align: left;
   margin: 0;
   padding-bottom: 5px;
-
 }
 .price {
   font-size: 1.5em;
-  color: #B12704;
+  color: #b12704;
   padding-bottom: 5px;
 }
 select {
@@ -155,32 +156,35 @@ select {
 }
 .description {
   font-size: 1.5em;
-  color:#0F1111;
-  margin:0;
-  padding-top:20px;
+  color: #0f1111;
+  margin: 0;
+  padding-top: 20px;
 }
 .buy-product {
   display: flex;
-  height: 300px;
   flex-direction: column;
+  max-width: 200px;
+  width: 80%;
+  height: 150px;
   padding: 10px;
+  margin: 0 0 20px 20px;
   border: 1px solid grey;
   border-radius: 8px;
 }
 #product-quantity {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0 170px;
+  padding: 10px 0 20px;
   font-size: 1.2em;
 }
 .select-quantity {
   width: 30%;
 }
 #add-to-cart {
-  border: 1px solid #B12704;
+  border: 1px solid #b12704;
   border-radius: 8px;
   font-size: 1.2em;
-  background: #B12704;
+  background: #b12704;
   color: white;
   padding: 5px;
 }
@@ -191,27 +195,29 @@ select {
 }
 #cart {
   min-width: 60%;
-  width: 60%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin:50px 20%;
+  margin: 20px;
   border: black solid;
   background: blanchedalmond;
 }
 .flex-cart {
   display: flex;
-  flex-direction: row;
-  padding-left: 20px;
+  flex-direction: column;
+}
+.cart-img-flex {
+  width: 100%;
 }
 .flex-cart img {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 200px;
   padding: 10px;
 }
 .description-cart {
-  width: 75%;
-  padding: 0 40px;
+  width: 100%;
+  padding: 0 20px;
 }
 .description-cart h2 {
   font-size: 2em;
@@ -221,28 +227,29 @@ select {
 }
 .price-cart {
   font-size: 1.5em;
-  color: #B12704;
+  color: #b12704;
+}
+.total-price-flex {
+  padding: 0 20px;
 }
 .total-price {
   font-size: 1.5em;
-  color:#B12704;
+  color: #b12704;
 }
-.deletebutton {
+.delete {
   width: 100px;
-  height: 100px;
-  background: red;
+  height: 30px;
 }
 .total-cart {
   font-size: 1.5em;
-  padding-left:25px;
+  padding-left: 20px;
 }
 .empty {
   display: flex;
   justify-content: center;
-  font-size:2em;
-  color: #B12704;
+  font-size: 1.5em;
+  color: #b12704;
 }
-
 /* CSS du formulaire */
 .form-flex {
   display: flex;
@@ -254,7 +261,7 @@ select {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 40px;
+  padding-top: 20px;
 }
 .input-cart {
   display: flex;
@@ -274,11 +281,11 @@ label {
 .validation {
   display: flex;
   align-items: center;
-  height: 30px;
-  background: #B12704;
+  height: 50px;
+  background: #b12704;
   color: white;
-  font-size: 1em;
-  border: 1px solid #B12704;
+  font-size: 1.3em;
+  border: 1px solid #b12704;
   border-radius: 8px;
   padding: 5px;
 }
@@ -288,23 +295,131 @@ label {
   height: 1050px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding-top: 100px;
+  padding: 20px 20px;
 }
 #confirmation h2 {
-  font-size: 3em;
+  font-size: 1.5em;
 }
 .idconfirmation {
-  font-size: 2em;
-  padding:40px;
+  font-size: 1.5em;
+  padding-top: 10px;
 }
 .totalconfirmation {
-  font-size: 2em;
-  color:#B12704;
+  font-size: 1.5em;
+  color: #b12704;
+  padding-top:10px;
 }
 
-/* CSS du footer */
-footer {
-  height: 150px;
-  background: #0F1111;
+@media only screen and (min-width: 1224px) {
+  
+  /* CSS du header */
+  nav {
+    padding: 50px 60px 0 60px;
+  }
+  nav h2 {
+    font-size: 4em;
+  }
+  nav li {
+    font-size: 22px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  li a {
+    padding: 5px;
+  }
+
+  /* CSS page index */
+  h1 {
+    font-size: 3em;
+  }
+  #listofcameras a {
+    width: 30%;
+  }
+
+  /* CSS page produit */
+
+  #product {
+    flex-direction: row;
+  }
+  #product img {
+    width: 500px;
+    height: 300px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .description-product {
+    width: 40%;
+    padding: 0 40px;
+  }
+  .buy-product {
+    width: 200px;
+    height: 300px;
+  }
+  #product-quantity {
+    padding: 10px 0 170px;
+  }
+
+  /* CSS page panier */
+  #cart {
+    width: 60%;
+    margin: 50px 20%;
+  }
+  .flex-cart {
+    flex-direction: row;
+    padding-left: 20px;
+  }
+  .cart-img-flex {
+    width: 150px;
+  }
+  .flex-cart img {
+    width: 150px;
+    height: 150px;
+  }
+  .description-cart {
+    width: 75%;
+    padding: 10px 40px;
+  }
+  .total-price-flex {
+    width: 30%;
+    padding-top: 10px;
+  }
+  .delete {
+    margin-top:20px;
+  }
+  .total-cart {
+    padding-left: 25px;
+  }
+  .empty {
+    font-size: 2em;
+  }
+
+  /* CSS du formulaire */
+  .form-cart {
+    padding-top: 40px;
+  }
+  .validation {
+    height: 30px;
+    font-size: 1em;
+  }
+
+  /* CSS page validation */
+  #confirmation {
+    padding: 100px 0 0 40px;
+  }
+  #confirmation h2 {
+    font-size: 3em;
+  }
+  .idconfirmation {
+    font-size: 2em;
+  }
+  .totalconfirmation {
+    font-size: 2em;
+    color: #b12704;
+  }
+
+  /* CSS du footer */
+  footer {
+    height: 150px;
+    background: #0f1111;
+  }
 }

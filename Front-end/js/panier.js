@@ -24,7 +24,7 @@ async function myCart() {
 	for (let i = 0; i < productStorage.length; i++) {
 		
 		    cart.innerHTML += `<div class="flex-cart">
-	                <div>
+	                <div class="cart-img-flex">
 		                <img src="${productStorage[i].img}" class"img-cart">
 	                </div>
 	                <div class="description-cart">
@@ -32,7 +32,7 @@ async function myCart() {
 		                <p>Quantité :${productStorage[i].quantity}</p>
 		                <p class="price-cart">prix : ${productStorage[i].price} €</p>
 	                </div>
-	                <div>
+	                <div class="total-price-flex">
 		                <p class="total-price">total: ${productStorage[i].quantity * productStorage[i].price}€</p>
 		                <button class="delete" type="submit">Supprimer</button>
 	                </div>
