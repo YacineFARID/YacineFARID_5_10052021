@@ -68,47 +68,49 @@ async function myCart() {
 myCart();
 
 
-function inputRegexTests() {
+async function inputRegexTests() {
     //input prénom
-    //console.log(inputRegex(firstName.value));
-    if (!inputRegex(firstName.value)) {
+    //console.log(inputRegexName(firstName.value));
+    if (!inputRegexName(firstName.value)) {
       messageError =
         "💡️ Votre PRENOM doit contenir au moins 1 lettre sans caractères spéciaux et sans chiffres.";
       inputError = true;
     }
   
     //input nom
-    //console.log(inputRegex(lastName.value));
-    if (!inputRegex(lastName.value)) {
+    //console.log(inputRegexName(lastName.value));
+    if (!inputRegexName(lastName.value)) {
       messageError =
         "💡️ Votre NOM doit contenir au moins 1 lettre sans caractères spéciaux et sans chiffres.";
       inputError = true;
     }
 
     //input adresse
-    console.log(inputRegexAdress(address.value));
-    if (!inputRegexAdresse(address.value)) {
+    //console.log(inputRegexAdress(address.value));
+    if (!inputRegexAdress(address.value)) {
       messageError =
         "💡️ Votre ADRESSE POSTALE ne doit pas contenir de caractères spéciaux.";
       inputError = true;
     }
   
     //input ville
-    console.log(inputRegexText(city.value));
-    if (!inputRegex(city.value)) {
+    //console.log(inputRegexName(city.value));
+    if (!inputRegexName(city.value)) {
       messageError =
         "💡️ Votre VILLE ne doit pas contenir de caractères spéciaux.";
       inputError = true;
     }
   
     //input mail
-    console.log(inputRegexMail(email.value));
+    //console.log(inputRegexMail(email.value));
     if (!inputRegexMail(email.value)) {
       messageError =
         "💡️ Votre MAIL ne doit pas contenir de caractères spéciaux et doit contenir @ et un .";
       inputError = true;
     }
 };
+  //Appel de la function inputRegexTests() pour tester nos inputs
+  inputRegexTests();
   
 
 // déclaration de la variable qui va nous servir a ciblé le formulaire
@@ -118,8 +120,7 @@ let myForm = document.getElementById('myform');
 myForm.addEventListener("submit", async(event) => {
     event.preventDefault();
 
-    //Appel de la function inputRegexTests() pour tester nos inputs
-    inputRegexTests();
+    
 
     // Création de l'objet contact et de l'array products
     let orderData = {
